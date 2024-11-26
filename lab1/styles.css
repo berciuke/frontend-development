@@ -1,0 +1,19 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
+input {
+  margin: 1rem;
+  width: 20rem;
+}
+#list {
+  display: grid;
+  gap: 1rem;
+}
+.pokemon {
+  padding: 0.1rem;
+}
