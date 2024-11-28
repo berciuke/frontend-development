@@ -6,15 +6,22 @@ body {
 .header {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 1rem;
-  gap: 5rem;
+  gap: 15rem;
   margin-left: 10rem;
 }
 
+#details-instructions {
+  font-style: italic;
+}
+
 #pokemons {
-  display: flex;
+  display: grid;
+  grid-template-columns: 60% 30%;
   gap: 10rem;
 }
+
 #search {
   margin: 1rem;
   width: 20rem;
@@ -29,6 +36,7 @@ body {
   grid-template-columns: 33% 33% 33%;
   gap: 1rem;
 }
+
 .pokemon {
   display: flex;
   border: 2px solid #5a5548;
@@ -37,9 +45,17 @@ body {
   justify-content: center;
 }
 
-#details {
+#pokemon-details {
   display: flex;
   /* border: 2px solid #5a5548; */
+  border-radius: 10%;
+  align-items: center;
+  /* justify-content:; */
+}
+
+#details-bar {
+  display: flex;
+  border: 2px solid #5a5548;
   border-radius: 10%;
   align-items: center;
   justify-content: center;
