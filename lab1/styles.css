@@ -5,15 +5,23 @@ body {
   display: flex;
   align-items: center;
   padding: 1rem;
+  margin-left: 10rem;
 }
 input {
   margin: 1rem;
   width: 20rem;
+  height: 2rem;
 }
 #list {
   display: grid;
+  grid-template-columns: 20% 20%;
   gap: 1rem;
+
 }
 .pokemon {
-  padding: 0.1rem;
+  display: flex;
+  border: 2px solid black;
+  /* width: 112px; */
+  align-items: center;
+  justify-content: center;
 }
