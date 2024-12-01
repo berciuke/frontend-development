@@ -1,6 +1,13 @@
 "use strict";
 
-function createPokemonElement(i, data, imageSource)  {
+function showLoadingBar() {
+  document.getElementById("loading-bar").classList.remove("hidden");
+}
+
+function hideLoadingBar() {
+  document.getElementById("loading-bar").className = "hidden";
+}
+function createPokemonElement(i, data, imageSource) {
   const div = document.createElement("div");
   div.className = "pokemon";
   div.id = `pokemon-${i}`;
@@ -10,13 +17,14 @@ function createPokemonElement(i, data, imageSource)  {
   imageElement.src = imageSource;
   div.appendChild(imageElement);
   return div;
-};
+}
 
 async function createDetailsElements(pokemonID) {
   const root = document.getElementById("details-bar");
   while (root.firstElementChild) {
     root.removeChild(root.firstElementChild);
   }
+  showLoadingBar()
   try {
     const details = await fetchDetails(pokemonID);
     const divMain = document.createElement("div");
@@ -41,7 +49,9 @@ async function createDetailsElements(pokemonID) {
     const errorMsg = document.createElement("div");
     errorMsg.textContent = "Sorry, failed to load Pokémon details...";
     root.appendChild(errorMsg);
-  } 
+  } finally {
+    hideLoadingBar()
+  }
 }
 
 async function fetchDetails(pokemonID) {
@@ -68,6 +78,7 @@ async function fetchDetails(pokemonID) {
 fetch("https://pokeapi.co/api/v2/pokemon/")
   .then((res) => res.json())
   .then((res) => {
+    showLoadingBar();
     let count = 0;
     const pokemons = res.results;
     const list = document.getElementById("list");
@@ -86,4 +97,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/")
     const errorMsg = document.createElement("h2");
     errorMsg.textContent = "Sorry, failed to load Pokémon list...";
     document.getElementById("pokemons").appendChild(errorMsg);
+  })
+  .finally(() => {
+    hideLoadingBar();
   });

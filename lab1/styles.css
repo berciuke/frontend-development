@@ -63,3 +63,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+#loading-bar {
+  background-color: darkblue;
+  width: 10rem;
+  text-align: center;
+  font-weight: 1000;
+}
+
+.hidden {
+  visibility: hidden;
+}
