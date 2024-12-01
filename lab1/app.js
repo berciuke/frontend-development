@@ -1,41 +1,70 @@
 "use strict";
-async function createDetails(pokemonID) {
-  const root = document.getElementById("details-bar");
-  if (root.childElementCount > 0) {
-    root.removeChild(document.getElementById("pokemon-details"));
-  }
-  const div = document.createElement("div");
-  div.textContent = await fetchDetails(pokemonID);
-  div.id = "pokemon-details"
-  root.appendChild(div);
-};
-const createPokemonElement = (i, data, imageSource) => {
+
+function createPokemonElement(i, data, imageSource)  {
   const div = document.createElement("div");
   div.className = "pokemon";
-  div.id = `pokemon$i`;
+  div.id = `pokemon-${i}`;
   div.textContent = `${i}. ${data.name}`;
-  div.onclick = () => createDetails(i);
+  div.onclick = () => createDetailsElements(i);
   const imageElement = document.createElement("img");
   imageElement.src = imageSource;
   div.appendChild(imageElement);
   return div;
 };
 
-async function fetchDetails(pokemonID) {
-  let stats;
-  await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`)
-    .then((res) => res.json())
-    .then((data) => {
-      stats = data.stats.reduce((acc, val) => {
-        return acc + `${val["stat"]["name"]}: ${val["base_stat"]}\n`;
-      }, "");
-      // return {
-      //   "types": data.types,
-
-      // }
-    });
-    return stats;
+async function createDetailsElements(pokemonID) {
+  const root = document.getElementById("details-bar");
+  while (root.firstElementChild) {
+    root.removeChild(root.firstElementChild);
   }
+  try {
+    const details = await fetchDetails(pokemonID);
+    const divMain = document.createElement("div");
+    divMain.id = "pokemon-details";
+    const createDetailElement = (id, text) => {
+      const element = document.createElement("div");
+      element.id = id;
+      element.innerHTML = text;
+      return element;
+    };
+    divMain.appendChild(createDetailElement("stats", details[0]));
+    divMain.appendChild(createDetailElement("types", details[1]));
+    divMain.appendChild(createDetailElement("height-and-weight", details[2]));
+    const pokemonBasicInfoElement = document
+      .getElementById(`pokemon-${pokemonID}`)
+      .cloneNode(true);
+    pokemonBasicInfoElement.id = `pokemon-${pokemonID}-copy`;
+    root.appendChild(pokemonBasicInfoElement);
+    root.appendChild(divMain);
+  } catch (error) {
+    console.error(error);
+    const errorMsg = document.createElement("div");
+    errorMsg.textContent = "Sorry, failed to load Pokémon details...";
+    root.appendChild(errorMsg);
+  } 
+}
+
+async function fetchDetails(pokemonID) {
+  let types, stats, heightAndWeight;
+  try {
+    await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        stats = data.stats.reduce((acc, val) => {
+          return acc + `${val["stat"]["name"]}: ${val["base_stat"]}<br>`;
+        }, "");
+        types = data.types.reduce(
+          (acc, val) => acc + `${val["slot"]}. ${val["type"]["name"]}<br>`,
+          "types:<br>"
+        );
+        heightAndWeight = `height: ${data.weight}<br>weight: ${data.height}`;
+      });
+    return [stats, types, heightAndWeight];
+  } catch (error) {
+    return ["Sorry, failed to load Pokémon details...", "", ""];
+  }
+}
+
 fetch("https://pokeapi.co/api/v2/pokemon/")
   .then((res) => res.json())
   .then((res) => {
@@ -49,7 +78,12 @@ fetch("https://pokeapi.co/api/v2/pokemon/")
           const image = data.sprites.front_default;
           count++;
           list.appendChild(createPokemonElement(count, pokemon, image));
-          // console.log(fetchDetails(data.id));
         });
     });
+  })
+  .catch((error) => {
+    console.log(error);
+    const errorMsg = document.createElement("h2");
+    errorMsg.textContent = "Sorry, failed to load Pokémon list...";
+    document.getElementById("pokemons").appendChild(errorMsg);
   });

@@ -47,14 +47,17 @@ body {
 
 #pokemon-details {
   display: flex;
-  /* border: 2px solid #5a5548; */
+  border: 2px solid #5a5548;
+  gap: 2rem;
+  padding: 2rem;
   border-radius: 10%;
   align-items: center;
-  /* justify-content:; */
 }
 
 #details-bar {
   display: flex;
+  gap: 1rem;
+  flex-direction: column;
   border: 2px solid #5a5548;
   border-radius: 10%;
   align-items: center;
