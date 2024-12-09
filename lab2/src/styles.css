@@ -9,7 +9,6 @@ body {
   justify-content: center;
   padding: 1rem;
   gap: 15rem;
-  margin-left: 10rem;
 }
 
 #details-instructions {
@@ -20,6 +19,12 @@ body {
   display: grid;
   grid-template-columns: 60% 30%;
   gap: 10rem;
+}
+
+.search-elements {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
 }
 
 #search {
@@ -48,7 +53,7 @@ body {
 #pokemon-details {
   display: flex;
   border: 2px solid #5a5548;
-  gap: 2rem;
+  gap: 1rem;
   padding: 2rem;
   border-radius: 10%;
   align-items: center;
@@ -56,7 +61,6 @@ body {
 
 #details-bar {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
   border: 2px solid #5a5548;
   border-radius: 10%;
@@ -64,9 +68,16 @@ body {
   justify-content: center;
 }
 
+#detailed-info {
+  display: flex;
+  gap: 2rem;
+}
+
 #loading-bar {
+  position: absolute;
+  bottom: 0rem;
+  width: 50%;
   background-color: darkblue;
-  width: 10rem;
   text-align: center;
   font-weight: 1000;
 }

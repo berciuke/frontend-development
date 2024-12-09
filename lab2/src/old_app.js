@@ -1,14 +1,24 @@
 "use strict";
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-ReactDOM.createRoot(document.getElementById("root"))
+
 function showLoadingBar() {
   document.getElementById("loading-bar").classList.remove("hidden");
 }
-
+function filterPokemons() {
+  const search = document.getElementById("search").value.toLowerCase();
+  const pokemons = document.querySelectorAll(".pokemon");
+  pokemons.forEach((pokemon) => {
+    const pokemonName = pokemon.textContent.toLowerCase();
+    if (pokemonName.includes(search)) {
+      pokemon.style.display = "block";
+    } else {
+      pokemon.style.display = "none";
+    }
+  });
+}
 function hideLoadingBar() {
   document.getElementById("loading-bar").className = "hidden";
 }
+
 function createPokemonElement(i, data, imageSource) {
   const div = document.createElement("div");
   div.className = "pokemon";
