@@ -16,6 +16,10 @@ function selectPokemon(i) {
   loadPokemons();
 }
 
+function pokemonIdFromUrlString(url) {        
+    return url.split('/').slice(-2, -1)
+}
+
 async function fetchImage(url) {
   const response = await fetch(url);
   const data = await response.json();
@@ -48,7 +52,7 @@ async function getPokemonsWithImages(pokemons) {
     pokemons.map(async (pokemon, i) => {
       const image = await fetchImage(pokemon.url);
       return {
-        i: i + 1,
+        i: pokemonIdFromUrlString(pokemon.url),
         name: pokemon.name,
         image: image,
       };
