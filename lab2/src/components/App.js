@@ -8,13 +8,11 @@ let details = null;
 
 function filterPokemons(event) {
   search = event.target.value;
-  render();
+  loadPokemons();
 }
 
 function selectPokemon(i) {
   selectedPokemonId = i;
-  isLoading = true;
-  render()
   loadPokemons();
 }
 
@@ -83,5 +81,4 @@ function render() {
     </section>
   );
 }
-render();
 loadPokemons();
