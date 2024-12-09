@@ -81,4 +81,5 @@ function render() {
     </section>
   );
 }
+
 loadPokemons();
