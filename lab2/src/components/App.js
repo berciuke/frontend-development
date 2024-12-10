@@ -1,3 +1,4 @@
+"use strict";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 let search = "";
@@ -27,7 +28,11 @@ async function fetchImage(url) {
 }
 
 async function fetchPokemons() {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
+  let parameter = "";
+  if (search) {
+    parameter = "?limit=200"
+  }
+  const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + parameter);
   const data = await response.json();
   const filteredPokemons = data.results.filter(({ name }) =>
     name.includes(search)
