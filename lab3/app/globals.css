@@ -87,7 +87,7 @@ label {
   align-items: center;
   justify-content: center;
 }
-#search {
+#search, #type {
   margin: 0.5rem;
   width: 20rem;
   height: 42px;
