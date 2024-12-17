@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function PokemonDetails({ pokemonDetails, view }) {
+export default function PokemonDetails({ pokemonDetails }) {
   const [favorites, setFavorites] = useState([]);
   
   useEffect(() => {
@@ -30,26 +30,6 @@ export default function PokemonDetails({ pokemonDetails, view }) {
 
   const isFavorite = favorites.includes(name);
 
-  if (view === 'stats') {
-    return (
-      <div id="details-bar">
-        <div id="details-header">
-          <img src={imageUrl} alt={name} />
-          <h1>{name}</h1>
-          <button onClick={() => toggleFavorite(name)}>
-            {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-          </button>
-        </div>
-        <div id="stats">
-          {stats.map((val, i) => (
-            <div key={i}>
-              {val.stat.name}: {val.base_stat}
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
   return (
     <div id="details-bar">
       <div id="details-header">

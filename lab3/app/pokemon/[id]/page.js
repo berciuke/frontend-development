@@ -5,15 +5,14 @@ async function fetchPokemonDetails(pokemonID) {
     return response.json();
   }
   
-  export default async function PokemonDetailsPage({ params, searchParams }) {
+  export default async function PokemonDetailsPage({ params }) {
     const { id } = params;
-    const view = searchParams.view || "";
     const details = await fetchPokemonDetails(id);
   
     return (
       <div>
         <div id="details">
-          <PokemonDetails pokemonDetails={details} view={view} />
+          <PokemonDetails pokemonDetails={details} />
         </div>
       </div>
     );
