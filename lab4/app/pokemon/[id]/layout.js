@@ -16,7 +16,6 @@ export default async function PokemonDetailsLayout({ children, params }) {
   return (
     <div id="details-content">
       <div id="breadcrumbs">{breadcrums}</div>
-      {children}
       <nav>
         <button>
           <Link href={`/pokemon/${pokemonId - 1}`}>Previous</Link>
@@ -25,6 +24,7 @@ export default async function PokemonDetailsLayout({ children, params }) {
           <Link href={`/pokemon/${pokemonId + 1}`}>Next</Link>
         </button>
       </nav>
+      {children}
     </div>
   );
 }

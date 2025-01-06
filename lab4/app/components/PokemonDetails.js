@@ -1,25 +1,50 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 export default function PokemonDetails({ pokemonDetails }) {
   const [favorites, setFavorites] = useState([]);
-  
+
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('favorites') || '[]');
-    setFavorites(stored);
+    if (typeof window !== "undefined") {
+      const stored = JSON.parse(localStorage.getItem("favorites") || "[]");
+      setFavorites(stored);
+    }
   }, []);
 
   const toggleFavorite = (name) => {
     let newFavs = [...favorites];
     if (newFavs.includes(name)) {
-      newFavs = newFavs.filter(f => f !== name);
+      newFavs = newFavs.filter((f) => f !== name);
     } else {
       newFavs.push(name);
     }
     setFavorites(newFavs);
-    localStorage.setItem('favorites', JSON.stringify(newFavs));
-  }
+    if (typeof window !== "undefined") {
+      localStorage.setItem("favorites", JSON.stringify(newFavs));
+    }
+  };
+  const addToComparison = (name) => {
+    if (typeof window === "undefined") return;
+    const storedComparison = JSON.parse(
+      localStorage.getItem("comparison") || "{}"
+    );
+
+    const comparsionInfo = {
+      id: pokemonDetails.id,
+      name: name,
+      details: pokemonDetails,
+    };
+
+    if (!storedComparison.pokemon1) {
+      storedComparison.pokemon1 = comparsionInfo;
+    } else {
+      if (storedComparison.pokemon1.name !== name) {
+        storedComparison.pokemon2 = comparsionInfo;
+      }
+    }
+    localStorage.setItem("comparison", JSON.stringify(storedComparison));
+  };
 
   if (!pokemonDetails) {
     return <div id="details-bar"></div>;
@@ -36,7 +61,10 @@ export default function PokemonDetails({ pokemonDetails }) {
         <img src={imageUrl} alt={name} />
         <h1>{name}</h1>
         <button onClick={() => toggleFavorite(name)}>
-          {isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          {isFavorite ? "Remove from favorites" : "Add to favorites"}
+        </button>
+        <button onClick={() => addToComparison(name)}>
+          Compare
         </button>
       </div>
       <div id="detailed-info">

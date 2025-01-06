@@ -9,6 +9,8 @@ export default function Navigation() {
       <Link href="/">Home</Link>
       <Link href="/pokemon">Pokemons</Link>
       <Link href="/favorites">Favorites</Link>
+      <Link href="/comparsion">Comparsion</Link>
+
     </nav>
   );
 }

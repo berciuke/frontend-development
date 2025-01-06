@@ -9,7 +9,7 @@ export default function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('favorites'));
+    const stored = JSON.parse(localStorage.getItem('favorites')) || [];
     let favs = [...stored];
     if (sort === 'name') {
       favs.sort();

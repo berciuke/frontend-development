@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 
 export default function PokemonList({ pokemons }) {
   const router = useRouter();
-
   const handleSelectPokemon = (id) => {
     router.push(`/pokemon/${id}`);
   }
