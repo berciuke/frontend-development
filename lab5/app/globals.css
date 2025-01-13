@@ -1,0 +1,282 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #191917;
+  color: #b2afa9;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-transform: uppercase;
+  color: #b2afa9;
+  text-decoration: none;
+}
+
+a:hover {
+  transform: scale(1.05);
+  background-color: #33302b;
+}
+
+button {
+  color: #b2afa9;
+  background-color: #5a5548;
+  border: 1px black solid;
+  font-size: 1.3rem;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 0.5rem;
+}
+
+#home-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#favorites-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#details-content {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.favorites-element {
+  padding: 2rem;
+  font-size: large;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15rem;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #5a5548;
+}
+
+#details-instructions {
+  font-style: italic;
+}
+
+#details-header {
+  display: flex;
+  flex-direction: column;
+}
+
+#pokemons {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.search-elements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#search,
+#type {
+  margin: 0.5rem;
+  width: 20rem;
+  height: 42px;
+  background-color: #5a5548;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+#list-area {
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
+
+#list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.pokemon {
+  display: flex;
+  border: 2px solid #5a5548;
+  border-radius: 10%;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #24221f;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.pokemon:hover {
+  transform: scale(1.05);
+  background-color: #33302b;
+}
+
+#pokemon-details {
+  display: flex;
+  border: 2px solid #5a5548;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 10%;
+  align-items: center;
+  background-color: #24221f;
+}
+
+#details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#details-bar, .card {
+  padding: 2rem;
+  border: 2px solid #5a5548;
+  border-radius: 10%;
+  background-color: #24221f;
+}
+
+#detailed-info {
+  display: flex;
+  gap: 2rem;
+}
+
+#loading {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+#loading-bar {
+  width: 50%;
+  background-color: darkblue;
+  font-weight: bold;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+#remove-btn {
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+/* --- MEDIA QUERIES / RESPONSYWNOŚĆ --- */
+
+/* 
+   Ekrany o szerokości do 992px (np. tablety w poziomie / laptopy z mniejszą rozdzielczością).
+   Zmniejszamy odstępy i dostosowujemy szerokości kolumn w siatce.
+*/
+@media (max-width: 992px) {
+  .header {
+    gap: 5rem; /* Zmniejszamy odstępy w nagłówku */
+  }
+
+  #list-area {
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+
+  #list {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolumny zamiast 3 */
+  }
+
+  #search {
+    width: 15rem; /* Zmniejszamy nieco pole wyszukiwania */
+  }
+}
+
+/*
+  Ekrany o szerokości do 768px (np. tablety w pionie).
+  Dalsze zmiany w układzie.
+*/
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #list-area {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  #list {
+    grid-template-columns: 1fr; /* 1 kolumna – karty Pokemon jedna pod drugą */
+  }
+  
+  .search-elements {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #search {
+    width: auto;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .header {
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  #search,
+  #type {
+    width: 80%; 
+  }
+
+  #list-area {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .pokemon {
+    padding: 0.5rem;
+  }
+}
+#comparison {
+  margin: 2rem; 
+  padding: 2rem;
+  border: 2px solid #5a5548;
+  border-radius: 10%;
+  max-width: 100%;
+}
+
+#comparison-container h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#cards-wrapper {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap; 
+}
+
+
+
+
