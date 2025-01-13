@@ -31,8 +31,57 @@ button:hover {
 label {
   display: flex;
   flex-direction: column;
-  margin: 1rem;
-  padding: 0.5rem;
+}
+
+.bold {
+  font-weight: bold;
+  margin-top: .4rem;
+}
+#notes-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+.notes-list {
+ display: flex;
+ flex-direction: column;
+ gap: 1rem;
+  padding:   2rem;
+  border: 2px solid #5a5548;
+  border-radius: 10%;
+  background-color: #24221f;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form input {
+  background-color: #b2afa9;
+  border: 0;
+}
+form input:hover {
+  transform: scale(1.05);
+}
+form select {
+  background-color: #b2afa9;
+  border: 0;
+}
+form select:hover {
+  transform: scale(1.05);
+}
+form textarea {
+  background-color: #b2afa9;
+  border: 0;
+}
+form textarea:hover {
+  transform: scale(1.05);
+}
+.form-types {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 #home-content {
@@ -43,6 +92,20 @@ label {
 }
 
 #favorites-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#comparsion-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#notes-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +213,8 @@ label {
   align-items: center;
 }
 
-#details-bar, .card {
+#details-bar,
+.card {
   padding: 2rem;
   border: 2px solid #5a5548;
   border-radius: 10%;
@@ -182,15 +246,9 @@ label {
   margin-left: 1rem;
 }
 
-/* --- MEDIA QUERIES / RESPONSYWNOŚĆ --- */
-
-/* 
-   Ekrany o szerokości do 992px (np. tablety w poziomie / laptopy z mniejszą rozdzielczością).
-   Zmniejszamy odstępy i dostosowujemy szerokości kolumn w siatce.
-*/
 @media (max-width: 992px) {
   .header {
-    gap: 5rem; /* Zmniejszamy odstępy w nagłówku */
+    gap: 5rem;
   }
 
   #list-area {
@@ -199,18 +257,14 @@ label {
   }
 
   #list {
-    grid-template-columns: repeat(2, 1fr); /* 2 kolumny zamiast 3 */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   #search {
-    width: 15rem; /* Zmniejszamy nieco pole wyszukiwania */
+    width: 15rem;
   }
 }
 
-/*
-  Ekrany o szerokości do 768px (np. tablety w pionie).
-  Dalsze zmiany w układzie.
-*/
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -223,9 +277,9 @@ label {
   }
 
   #list {
-    grid-template-columns: 1fr; /* 1 kolumna – karty Pokemon jedna pod drugą */
+    grid-template-columns: 1fr;
   }
-  
+
   .search-elements {
     flex-direction: column;
     gap: 1rem;
@@ -236,7 +290,6 @@ label {
   }
 }
 
-
 @media (max-width: 480px) {
   .header {
     gap: 0.5rem;
@@ -245,7 +298,7 @@ label {
 
   #search,
   #type {
-    width: 80%; 
+    width: 80%;
   }
 
   #list-area {
@@ -257,8 +310,9 @@ label {
     padding: 0.5rem;
   }
 }
+
 #comparison {
-  margin: 2rem; 
+  margin: 2rem;
   padding: 2rem;
   border: 2px solid #5a5548;
   border-radius: 10%;
@@ -274,9 +328,5 @@ label {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
-
-
-
-

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PokemonNotesSection from '../../components/PokemonNotesSection';
 
 async function getBreadcrumbs(id) {
   const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -25,6 +26,9 @@ export default async function PokemonDetailsLayout({ children, params }) {
         </button>
       </nav>
       {children}
+      <div id="notes-section">
+        <PokemonNotesSection pokemonID={id}></PokemonNotesSection>
+      </div>
     </div>
   );
 }
