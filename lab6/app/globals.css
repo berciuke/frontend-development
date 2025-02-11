@@ -330,3 +330,20 @@ form textarea:hover {
   margin-bottom: 2rem;
   flex-wrap: wrap;
 }
+
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.card-container .card {
+  border: 2px solid #5a5548;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #24221f;
+}
+
+
